@@ -5,17 +5,19 @@
     
     <title>python使用zip,tar进行压缩文件时路径问题 | xijun.gong</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="#mulu">
+    <meta name="description" content="[1] zipfile使用相对路径进行打包方法   我们预先准备test文件夹里面的结构为：      test:          a.txt           b.txt          c.txt   12345678910111213141516171819import zipfileimport osdef zip(fname_out, dir_in):    try:">
 <meta name="keywords" content="python">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="python使用zip,tar进行压缩文件时路径问题">
-<meta property="og:url" content="http://gongxijun.github.io/categories/index.html">
+<meta property="og:url" content="http://gongxijun.github.io/2017/06/09/20170608/index.html">
 <meta property="og:site_name" content="xijun.gong">
-<meta property="og:description" content="#mulu">
-<meta property="og:updated_time" content="2017-06-09T03:45:48.328Z">
+<meta property="og:description" content="[1] zipfile使用相对路径进行打包方法   我们预先准备test文件夹里面的结构为：      test:          a.txt           b.txt          c.txt   12345678910111213141516171819import zipfileimport osdef zip(fname_out, dir_in):    try:">
+<meta property="og:image" content="http://gongxijun.github.io/2017/06/09/20170608/image/123.gif">
+<meta property="og:updated_time" content="2017-06-09T05:20:31.852Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python使用zip,tar进行压缩文件时路径问题">
-<meta name="twitter:description" content="#mulu">
+<meta name="twitter:description" content="[1] zipfile使用相对路径进行打包方法   我们预先准备test文件夹里面的结构为：      test:          a.txt           b.txt          c.txt   12345678910111213141516171819import zipfileimport osdef zip(fname_out, dir_in):    try:">
+<meta name="twitter:image" content="http://gongxijun.github.io/2017/06/09/20170608/image/123.gif">
     
 
     
@@ -212,7 +214,7 @@
 </aside>
 
             
-            <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-20170608" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -225,13 +227,51 @@
     
 
                 
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/06/09/20170608/">
+            <time datetime="2017-06-09T05:20:32.856Z" itemprop="datePublished">1396/3/19</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/python/">python</a>
+    </div>
+
+                    </div>
+                
             </header>
         
         
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>#mulu</p>
+            <p>[1] zipfile使用相对路径进行打包方法  </p>
+<pre><code>我们预先准备test文件夹里面的结构为：  
+   test:  
+       a.txt   
+       b.txt  
+       c.txt  
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> zipfile</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">zip</span><span class="params">(fname_out, dir_in)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        os.chdir(dir_in)</div><div class="line">        <span class="keyword">with</span> zipfile.ZipFile(fname_out, <span class="string">'w'</span>,zipfile.ZIP_DEFLATED) <span class="keyword">as</span> zip:</div><div class="line">            <span class="keyword">for</span> root, dir, files <span class="keyword">in</span> os.walk(dir_in):</div><div class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">                    fullpath = file</div><div class="line">                    zip.write(fullpath)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        <span class="keyword">print</span> e</div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    zip(<span class="string">"/media/tools/a.zip"</span>,</div><div class="line">        <span class="string">"/media/test"</span>)</div></pre></td></tr></table></figure>
+<pre><code>结果显示：
+    a.zip:
+        a.txt
+        b.txt
+        c.txt
+</code></pre><p>[2] tarfile使用相对路径进行打包方法  </p>
+<pre><code>使用同上的文件集合:
+         test:
+            a.txt
+            b.txt
+            c.txt  
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tarfile</div><div class="line"><span class="keyword">import</span> zipfile</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">tar</span><span class="params">(fname_out, dir_in)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        os.chdir(dir_in)</div><div class="line">        <span class="keyword">with</span> tarfile.open(fname_out, <span class="string">'w:gz'</span>) <span class="keyword">as</span> tar:</div><div class="line">            <span class="keyword">for</span> root, dir, files <span class="keyword">in</span> os.walk(dir_in):</div><div class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">                    fullpath = file</div><div class="line">                    tar.add(fullpath, recursive=<span class="keyword">False</span>)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        <span class="keyword">print</span> e</div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">zip</span><span class="params">(fname_out, dir_in)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        os.chdir(dir_in)</div><div class="line">        <span class="keyword">with</span> zipfile.ZipFile(fname_out, <span class="string">'w'</span>,zipfile.ZIP_DEFLATED) <span class="keyword">as</span> zip:</div><div class="line">            <span class="keyword">for</span> root, dir, files <span class="keyword">in</span> os.walk(dir_in):</div><div class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">                    fullpath = file</div><div class="line">                    zip.write(fullpath)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        <span class="keyword">print</span> e</div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    zip(<span class="string">"/media/tools/a.zip"</span>,</div><div class="line">        <span class="string">"/media/test"</span>)</div></pre></td></tr></table></figure>
+<p><img src="./image/123.gif" alt=""></p>
 
         
         </div>
@@ -242,7 +282,7 @@
 
 </div>
 
-    <a data-url="http://gongxijun.github.io/categories/index.html" data-id="cj3pep3810002c2glr9cfifss" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://gongxijun.github.io/2017/06/09/20170608/" data-id="cj3pep37x0001c2glxq8fklpa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -310,7 +350,7 @@
 
             
     
-        <a href="http://gongxijun.github.io/categories/index.html#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gongxijun.github.io/categories/index.html">评论</a>
+        <a href="http://gongxijun.github.io/2017/06/09/20170608/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gongxijun.github.io/2017/06/09/20170608/">评论</a>
     
 
         </footer>
@@ -430,9 +470,9 @@
     <script>
     var disqus_config = function () {
         
-            this.page.url = 'http://gongxijun.github.io/categories/index.html';
+            this.page.url = 'http://gongxijun.github.io/2017/06/09/20170608/';
         
-        this.page.identifier = 'undefined';
+        this.page.identifier = '20170608';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
