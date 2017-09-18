@@ -14,8 +14,7 @@
 <meta property="og:description" content="[1] 代码如下：   123456789101112131415161718192021222324    #-*- coding:utf-8 -*-&quot;&quot;&quot;    @author: gxjun    @file: test.py    @time: 17-9-18 下午2:33&quot;&quot;&quot;from PIL import Imagefrom PIL.ExifTags import TAGSimport">
 <meta property="og:image" content="http://gongxijun.github.io/image/20170916/135.jpeg">
 <meta property="og:image" content="http://gongxijun.github.io/image/20170916/result.jpg">
-<meta property="og:image" content="http://gongxijun.github.io/image/123.gif">
-<meta property="og:updated_time" content="2017-09-18T11:00:05.265Z">
+<meta property="og:updated_time" content="2017-09-18T11:08:05.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python使用PIL读取原始图片信息exif,并依据旋转信息自动将图片摆正.">
 <meta name="twitter:description" content="[1] 代码如下：   123456789101112131415161718192021222324    #-*- coding:utf-8 -*-&quot;&quot;&quot;    @author: gxjun    @file: test.py    @time: 17-9-18 下午2:33&quot;&quot;&quot;from PIL import Imagefrom PIL.ExifTags import TAGSimport">
@@ -234,7 +233,7 @@
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2017/09/18/20170916/">
-            <time datetime="2017-09-18T11:00:06.177Z" itemprop="datePublished">Mon Sep 18 2017 19:00:06 GMT+0800</time>
+            <time datetime="2017-09-18T11:08:05.848Z" itemprop="datePublished">Mon Sep 18 2017 19:08:05 GMT+0800</time>
         </a>
     </div>
 
@@ -258,7 +257,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="comment">#-*- coding:utf-8 -*-</span></div><div class="line"><span class="string">"""</span></div><div class="line">    @author: gxjun</div><div class="line">    @file: test.py</div><div class="line">    @time: 17-9-18 下午2:33</div><div class="line">"""</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">from</span> PIL.ExifTags <span class="keyword">import</span> TAGS</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">img = Image.open(<span class="string">r"./demo.jpg"</span>)</div><div class="line"><span class="keyword">if</span> img._getexif():</div><div class="line">    <span class="keyword">for</span> tag,value <span class="keyword">in</span> img._getexif().items():</div><div class="line">        <span class="keyword">if</span> TAGS.get(tag,tag).__eq__(<span class="string">'Orientation'</span>):</div><div class="line">         <span class="keyword">if</span> value ==<span class="number">6</span>: <span class="comment">#表示顺时针90</span></div><div class="line">           img=img.transpose(Image.ROTATE_270);</div><div class="line">           <span class="keyword">break</span>;</div><div class="line">         <span class="keyword">elif</span> value==<span class="number">8</span>: <span class="comment">#表示逆时针90</span></div><div class="line">           img = img.transpose(Image.ROTATE_90);</div><div class="line">           <span class="keyword">break</span>;</div><div class="line">         <span class="keyword">elif</span> value ==<span class="number">3</span>:</div><div class="line">           img = img.transpose(Image.ROTATE_180);</div><div class="line">           <span class="keyword">break</span>;</div><div class="line">    img.save(<span class="string">"result.jpg"</span>)</div></pre></td></tr></table></figure>
 <p>[1] 效果图:<br><img src="/image/20170916/135.jpeg" alt=""></p>
 <p>[2] 旋转之后:<br><img src="/image/20170916/result.jpg" alt=""></p>
-<p><img src="/image/123.gif" alt=""></p>
 
         
         </div>
@@ -376,7 +374,7 @@
                         <div class="item-inner">
                             <p class="item-category"></p>
                             <p class="item-title"><a href="/2017/09/18/20170916/" class="title">python使用PIL读取原始图片信息exif,并依据旋转信息自动将图片摆正.</a></p>
-                            <p class="item-date"><time datetime="2017-09-18T11:00:06.177Z" itemprop="datePublished">Mon Sep 18 2017 19:00:06 GMT+0800</time></p>
+                            <p class="item-date"><time datetime="2017-09-18T11:08:05.848Z" itemprop="datePublished">Mon Sep 18 2017 19:08:05 GMT+0800</time></p>
                         </div>
                     </li>
                 

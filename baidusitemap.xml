@@ -3,15 +3,13 @@
 
 
     
-    
-    
   <url>
     <loc>http://gongxijun.github.io/2017/09/18/20170916/</loc>
-    <lastmod>2017-09-18T11:00:05.265Z</lastmod>
+    <lastmod>2017-09-18T11:08:05.840Z</lastmod>
     <data>
         <display>
         <title>python使用PIL读取原始图片信息exif,并依据旋转信息自动将图片摆正.</title>
-        <pubTime>2017-09-18T11:00:06.177Z</pubTime>
+        <pubTime>2017-09-18T11:08:05.848Z</pubTime>
         
         <tag>python</tag>
          
@@ -21,6 +19,8 @@
     </data>
     </url>
 
+    
+    
     
   <url>
     <loc>http://gongxijun.github.io/2017/09/18/20170609/</loc>
