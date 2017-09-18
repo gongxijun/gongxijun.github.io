@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>xijun.gong</title>
+  
+  <subtitle>袅袅兮秋风,什么兮木业下.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://gongxijun.github.io/"/>
+  <updated>2017-09-18T10:37:06.340Z</updated>
+  <id>http://gongxijun.github.io/</id>
+  
+  <author>
+    <name>Gxjun</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python使用PIL读取原始图片信息exif,并依据旋转信息自动将图片摆正.</title>
+    <link href="http://gongxijun.github.io/2017/09/18/20170916/"/>
+    <id>http://gongxijun.github.io/2017/09/18/20170916/</id>
+    <published>2017-09-18T10:37:06.348Z</published>
+    <updated>2017-09-18T10:37:06.340Z</updated>
+    
+    <content type="html"><![CDATA[<p>[1] 代码如下：  </p><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="comment">#-*- coding:utf-8 -*-</span></div><div class="line"><span class="string">"""</span></div><div class="line">    @author: gxjun</div><div class="line">    @file: test.py</div><div class="line">    @time: 17-9-18 下午2:33</div><div class="line">"""</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">from</span> PIL.ExifTags <span class="keyword">import</span> TAGS</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">img = Image.open(<span class="string">r"./demo.jpg"</span>)</div><div class="line"><span class="keyword">if</span> img._getexif():</div><div class="line">    <span class="keyword">for</span> tag,value <span class="keyword">in</span> img._getexif().items():</div><div class="line">        <span class="keyword">if</span> TAGS.get(tag,tag).__eq__(<span class="string">'Orientation'</span>):</div><div class="line">         <span class="keyword">if</span> value ==<span class="number">6</span>: <span class="comment">#表示顺时针90</span></div><div class="line">           img=img.transpose(Image.ROTATE_270);</div><div class="line">           <span class="keyword">break</span>;</div><div class="line">         <span class="keyword">elif</span> value==<span class="number">8</span>: <span class="comment">#表示逆时针90</span></div><div class="line">           img = img.transpose(Image.ROTATE_90);</div><div class="line">           <span class="keyword">break</span>;</div><div class="line">         <span class="keyword">elif</span> value ==<span class="number">3</span>:</div><div class="line">           img = img.transpose(Image.ROTATE_180);</div><div class="line">           <span class="keyword">break</span>;</div><div class="line">    img.save(<span class="string">"result.jpg"</span>)</div></pre></td></tr></table></figure><p>[1] 效果图:<br><img src="/image/20170916/135.jpg" alt=""></p><p>[2] 旋转之后:<br><img src="/image/20170916/result.jpg" alt=""></p><p><img src="/image/222.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[1] 代码如下：  &lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;di
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://gongxijun.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>faster-rcnn做测试中的详细介绍</title>
+    <link href="http://gongxijun.github.io/2017/09/18/20170609/"/>
+    <id>http://gongxijun.github.io/2017/09/18/20170609/</id>
+    <published>2017-09-18T10:32:31.672Z</published>
+    <updated>2017-09-18T10:31:59.441Z</updated>
+    
+    <content type="html"><![CDATA[<p> 目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">运行faster-rcnn前的准备工作  </div><div class="line">测试原理介绍  </div><div class="line">     IOU算法介绍  </div><div class="line">     精确率[Precion],召回率[Recall],平均查准率[average precision --&gt;AP],平均精度[mean average precision -&gt;MAP]  </div><div class="line">测试流程介绍</div></pre></td></tr></table></figure></p><h5 id="运行faster-rcnn前的准备工作"><a href="#运行faster-rcnn前的准备工作" class="headerlink" title="运行faster-rcnn前的准备工作"></a>运行faster-rcnn前的准备工作</h5><p>   [1]. 创建如下文件夹<br>     py-faster-rcnn/data/VOCdevkit2007/results/VOC2007/Main<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注: 这个是在官方给的数据集合下添加/results/VOC2007/Main,如果想改成自己的定义的名字可以去pascal_voc.py目录下修改</div></pre></td></tr></table></figure></p><p>   [2].修改官方给定使用ss获取候选区模式方法，改成使用RPN来进行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">1.</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt; 目录&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;l
+      
+    
+    </summary>
+    
+    
+      <category term="python 目标检测 深度学习" scheme="http://gongxijun.github.io/tags/python-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python使用zip,tar进行压缩文件时路径问题</title>
+    <link href="http://gongxijun.github.io/2017/06/09/20170608/"/>
+    <id>http://gongxijun.github.io/2017/06/09/20170608/</id>
+    <published>2017-06-09T09:48:07.027Z</published>
+    <updated>2017-06-09T09:48:07.003Z</updated>
+    
+    <content type="html"><![CDATA[<p>[1] zipfile使用相对路径进行打包方法  </p><pre><code>我们预先准备test文件夹里面的结构为：     test:         a.txt          b.txt         c.txt  </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> zipfile</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">zip</span><span class="params">(fname_out, dir_in)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        os.chdir(dir_in)</div><div class="line">        <span class="keyword">with</span> zipfile.ZipFile(fname_out, <span class="string">'w'</span>,zipfile.ZIP_DEFLATED) <span class="keyword">as</span> zip:</div><div class="line">            <span class="keyword">for</span> root, dir, files <span class="keyword">in</span> os.walk(dir_in):</div><div class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">                    fullpath = file</div><div class="line">                    zip.write(fullpath)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        <span class="keyword">print</span> e</div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    zip(<span class="string">"/media/tools/a.zip"</span>,</div><div class="line">        <span class="string">"/media/test"</span>)</div></pre></td></tr></table></figure><pre><code>结果显示：    a.zip:        a.txt        b.txt        c.txt</code></pre><p>[2] tarfile使用相对路径进行打包方法  </p><pre><code>使用同上的文件集合:         test:            a.txt            b.txt            c.txt  </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tarfile</div><div class="line"><span class="keyword">import</span> zipfile</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">tar</span><span class="params">(fname_out, dir_in)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        os.chdir(dir_in)</div><div class="line">        <span class="keyword">with</span> tarfile.open(fname_out, <span class="string">'w:gz'</span>) <span class="keyword">as</span> tar:</div><div class="line">            <span class="keyword">for</span> root, dir, files <span class="keyword">in</span> os.walk(dir_in):</div><div class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">                    fullpath = file</div><div class="line">                    tar.add(fullpath, recursive=<span class="keyword">False</span>)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        <span class="keyword">print</span> e</div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">zip</span><span class="params">(fname_out, dir_in)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        os.chdir(dir_in)</div><div class="line">        <span class="keyword">with</span> zipfile.ZipFile(fname_out, <span class="string">'w'</span>,zipfile.ZIP_DEFLATED) <span class="keyword">as</span> zip:</div><div class="line">            <span class="keyword">for</span> root, dir, files <span class="keyword">in</span> os.walk(dir_in):</div><div class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">                    fullpath = file</div><div class="line">                    zip.write(fullpath)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        <span class="keyword">print</span> e</div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    zip(<span class="string">"/media/tools/a.zip"</span>,</div><div class="line">        <span class="string">"/media/test"</span>)</div></pre></td></tr></table></figure><p><img src="/image/123.gif" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[1] zipfile使用相对路径进行打包方法  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;我们预先准备test文件夹里面的结构为：  
+   test:  
+       a.txt   
+       b.txt  
+       c.txt  
+&lt;/code&gt;&lt;/pre&gt;&lt;fi
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://gongxijun.github.io/tags/python/"/>
+    
+  </entry>
+  
+</feed>

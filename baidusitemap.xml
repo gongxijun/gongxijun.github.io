@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://gongxijun.github.io/2017/09/18/20170916/</loc>
+    <lastmod>2017-09-18T10:37:06.340Z</lastmod>
+    <data>
+        <display>
+        <title>python使用PIL读取原始图片信息exif,并依据旋转信息自动将图片摆正.</title>
+        <pubTime>2017-09-18T10:37:06.348Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gongxijun.github.io/2017/09/18/20170609/</loc>
+    <lastmod>2017-09-18T10:31:59.441Z</lastmod>
+    <data>
+        <display>
+        <title>faster-rcnn做测试中的详细介绍</title>
+        <pubTime>2017-09-18T10:32:31.672Z</pubTime>
+        
+        <tag>python 目标检测 深度学习</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://gongxijun.github.io/2017/06/09/20170608/</loc>
+    <lastmod>2017-06-09T09:48:07.003Z</lastmod>
+    <data>
+        <display>
+        <title>python使用zip,tar进行压缩文件时路径问题</title>
+        <pubTime>2017-06-09T09:48:07.027Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+</urlset>
