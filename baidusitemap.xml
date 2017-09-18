@@ -3,15 +3,20 @@
 
 
     
+    
   <url>
-    <loc>http://gongxijun.github.io/2017/09/18/20170916/</loc>
-    <lastmod>2017-09-18T10:37:06.340Z</lastmod>
+    <loc>http://gongxijun.github.io/2017/09/18/20170609/</loc>
+    <lastmod>2017-09-18T10:43:54.670Z</lastmod>
     <data>
         <display>
-        <title>python使用PIL读取原始图片信息exif,并依据旋转信息自动将图片摆正.</title>
-        <pubTime>2017-09-18T10:37:06.348Z</pubTime>
+        <title>faster-rcnn做测试中的详细介绍</title>
+        <pubTime>2017-09-18T10:43:54.698Z</pubTime>
         
         <tag>python</tag>
+         
+        <tag>目标检测</tag>
+         
+        <tag>深度学习</tag>
          
          
            
@@ -21,14 +26,14 @@
 
     
   <url>
-    <loc>http://gongxijun.github.io/2017/09/18/20170609/</loc>
-    <lastmod>2017-09-18T10:31:59.441Z</lastmod>
+    <loc>http://gongxijun.github.io/2017/09/18/20170916/</loc>
+    <lastmod>2017-09-18T10:37:06.340Z</lastmod>
     <data>
         <display>
-        <title>faster-rcnn做测试中的详细介绍</title>
-        <pubTime>2017-09-18T10:32:31.672Z</pubTime>
+        <title>python使用PIL读取原始图片信息exif,并依据旋转信息自动将图片摆正.</title>
+        <pubTime>2017-09-18T10:37:06.348Z</pubTime>
         
-        <tag>python 目标检测 深度学习</tag>
+        <tag>python</tag>
          
          
            
@@ -54,5 +59,4 @@
     </data>
     </url>
 
-    
 </urlset>
