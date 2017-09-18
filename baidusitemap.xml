@@ -3,6 +3,23 @@
 
 
     
+  <url>
+    <loc>http://gongxijun.github.io/2017/09/18/20170916/</loc>
+    <lastmod>2017-09-18T10:54:09.450Z</lastmod>
+    <data>
+        <display>
+        <title>python使用PIL读取原始图片信息exif,并依据旋转信息自动将图片摆正.</title>
+        <pubTime>2017-09-18T10:54:09.514Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://gongxijun.github.io/2017/09/18/20170609/</loc>
@@ -17,23 +34,6 @@
         <tag>目标检测</tag>
          
         <tag>深度学习</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://gongxijun.github.io/2017/09/18/20170916/</loc>
-    <lastmod>2017-09-18T10:37:06.340Z</lastmod>
-    <data>
-        <display>
-        <title>python使用PIL读取原始图片信息exif,并依据旋转信息自动将图片摆正.</title>
-        <pubTime>2017-09-18T10:37:06.348Z</pubTime>
-        
-        <tag>python</tag>
          
          
            
